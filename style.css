@@ -8,6 +8,35 @@
 /* ------------------------------------------
    LOADING SCREEN
 ------------------------------------------ */
+/* ------------------------------------------------------
+   FULLSCREEN FLOATING HEART ANIMATION
+------------------------------------------------------ */
+.hearts-fullscreen {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 99999; /* above everything */
+}
+
+.floating-heart {
+  position: absolute;
+  bottom: -50px;
+  color: #ff4f9f;
+  opacity: 0.9;
+  animation: riseHeart linear forwards;
+}
+
+@keyframes riseHeart {
+  0% {
+    transform: translateY(0) translateX(0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-120vh) translateX(var(--drift)) scale(1.8);
+    opacity: 0;
+  }
+}
 #loading-screen {
   position: fixed;
   inset: 0;
