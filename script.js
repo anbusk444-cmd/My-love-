@@ -1,6 +1,36 @@
 // ------------------------------------------
 // REMOVE LOADING SCREEN
 // ------------------------------------------
+// ------------------------------------------------------
+// FULLSCREEN FLOATING HEARTS
+// ------------------------------------------------------
+function createFloatingHeart() {
+  const container = document.querySelector(".hearts-fullscreen");
+  const heart = document.createElement("div");
+
+  heart.classList.add("floating-heart");
+  heart.textContent = "❤️";
+
+  // Random horizontal position
+  heart.style.left = Math.random() * 100 + "vw";
+
+  // Random animation duration
+  heart.style.animationDuration = Math.random() * 4 + 4 + "s";
+
+  // Random size
+  heart.style.fontSize = Math.random() * 25 + 20 + "px";
+
+  // Random side drift (left/right float)
+  heart.style.setProperty("--drift", (Math.random() * 60 - 30) + "px");
+
+  container.appendChild(heart);
+
+  // Remove after animation
+  setTimeout(() => heart.remove(), 8000);
+}
+
+// Create hearts repeatedly
+setInterval(createFloatingHeart, 500);  // every 0.5s
 window.onload = () => {
   const loader = document.getElementById("loading-screen");
   loader.style.opacity = "0";
