@@ -1,38 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>My Website — Dark Theme</title>
-
-  <!-- Google font (optional) -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-
-  <link rel="stylesheet" href="style.css" />
-</head>
 <body>
-  <!-- Neon glow for the title -->
-<h1 class="neon-title">MY LOVE ❤️</h1>
-
-<!-- Background music -->
-<button id="musicBtn">🎵 Music</button>
-<audio id="bgMusic" loop>
-  <source src="music.mp3" type="audio/mpeg">
-</audio>
-
-<!-- Effect Layers -->
-<div class="hearts-fullscreen"></div>
-<div class="sparkles"></div>
-<div class="stars"></div>
-<div class="rose-petals"></div>
-<div class="fireflies"></div>
-  <div id="loading-screen">
-  <div class="loader-text">Loading… My Love ❤️</div>
-  </div>
-  <div class="hearts-container"></div>
   <div class="page-shell">
 
-    <!-- Header / Nav -->
     <header class="site-header">
       <div class="header-inner">
         <div class="brand">MY LOVE ❤️</div>
@@ -45,59 +13,53 @@
       </div>
     </header>
 
-    <!-- Hero -->
     <main id="home">
       <section class="hero">
-        <h1>Welcome to<br><span class="accent">MY WEBSITE</span></h1>
-        <p class="lead">Love form your husband 👀💚</p>
+        <h1 class="neon-title">MY WEBSITE<br><span class="accent">FOR MY LOVE</span></h1>
+        <p class="lead">Love from your husband 👀💚</p>
         <a class="cta" href="#gallery">View My Photos</a>
       </section>
 
-      <!-- Gallery -->
       <section id="gallery" class="gallery-section">
         <h2 class="section-title">My Photo Album</h2>
 
         <div class="grid" id="galleryGrid">
-          <!-- Put your images here (example shown) -->
-          <!-- Important: use correct path and case-sensitive filenames on GitHub Pages -->
-          <figure class="photo">
-            <img data-src="images/photo1.jpg" alt="Photo 1" loading="lazy">
-          </figure>
-          <figure class="photo">
-            <img data-src="images/photo2.jpg" alt="Photo 2" loading="lazy">
-          </figure>
-          <figure class="photo">
-            <img data-src="images/photo3.jpg" alt="Photo 3" loading="lazy">
-          </figure>
-          <figure class="photo">
-            <img data-src="images/photo4.jpg" alt="Photo 4" loading="lazy">
-          </figure>
-          <figure class="photo">
-            <img data-src="images/photo5.jpg" alt="Photo 5" loading="lazy">
-          </figure>
-          <figure class="photo">
-            <img data-src="images/photo6.jpg" alt="Photo 6" loading="lazy">
-          </figure>
+          <figure class="photo"><img data-src="images/photo1.jpg" alt=""></figure>
+          <figure class="photo"><img data-src="images/photo2.jpg" alt=""></figure>
+          <figure class="photo"><img data-src="images/photo3.jpg" alt=""></figure>
+          <figure class="photo"><img data-src="images/photo4.jpg" alt=""></figure>
+          <figure class="photo"><img data-src="images/photo5.jpg" alt=""></figure>
+          <figure class="photo"><img data-src="images/photo6.jpg" alt=""></figure>
         </div>
       </section>
 
-      <!-- Footer -->
       <footer class="site-footer">
-        <p>© <span id="year"></span> MY website for my pondati 💖</p>
+        <p>© <span id="year"></span> My website for my pondati 💖</p>
       </footer>
     </main>
 
-    <!-- Lightbox Modal -->
-    <div id="lightbox" class="lightbox" aria-hidden="true" role="dialog" aria-label="Image viewer">
-      <button class="lb-close" aria-label="Close">&times;</button>
-      <button class="lb-prev" aria-label="Previous">◀</button>
+    <!-- Lightbox -->
+    <div id="lightbox" class="lightbox">
+      <button class="lb-close">&times;</button>
+      <button class="lb-prev">◀</button>
       <img class="lb-image" alt="">
-      <button class="lb-next" aria-label="Next">▶</button>
-      <div class="lb-caption" aria-live="polite"></div>
+      <button class="lb-next">▶</button>
+      <div class="lb-caption"></div>
     </div>
 
   </div>
 
+  <!-- Music Button -->
+  <button id="musicBtn">🎵</button>
+  <audio id="bgMusic" loop>
+    <source src="music.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- Effects (NO HEARTS) -->
+  <div class="sparkles"></div>
+  <div class="stars"></div>
+  <div class="rose-petals"></div>
+  <div class="fireflies"></div>
+
   <script src="script.js"></script>
 </body>
-</html>
