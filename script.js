@@ -94,4 +94,26 @@ document.addEventListener("keydown", (e) => {
   if (e.key === "ArrowRight") btnNext.click();
   if (e.key === "ArrowLeft") btnPrev.click();
   if (e.key === "Escape") btnClose.click();
+  // ------------------------------------------
+// FLOATING HEART EFFECT
+// ------------------------------------------
+function createHeart() {
+  const container = document.querySelector(".hearts-container");
+  const heart = document.createElement("div");
+
+  heart.classList.add("heart");
+  heart.textContent = "❤️";
+
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.fontSize = Math.random() * 20 + 15 + "px";
+  heart.style.animationDuration = Math.random() * 3 + 3 + "s";
+
+  container.appendChild(heart);
+
+  setTimeout(() => {
+    heart.remove();
+  }, 6000);
+}
+
+setInterval(createHeart, 800); // hearts every 0.8 seconds
 });
