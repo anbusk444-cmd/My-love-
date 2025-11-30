@@ -57,26 +57,7 @@ body {
 /* ------------------------------------------------------
    FULLSCREEN FLOATING HEARTS
 ------------------------------------------------------ */
-.hearts-fullscreen {
-  position: fixed;
-  inset: 0;
-  overflow: hidden;
-  pointer-events: none;
-  z-index: 20;
-}
 
-.floating-heart {
-  position: absolute;
-  bottom: -50px;
-  color: #ff4f9f;
-  opacity: 0.9;
-  animation: riseHeart linear forwards;
-}
-
-@keyframes riseHeart {
-  from {transform: translateY(0);}
-  to {transform: translateY(-120vh);}
-}
 
 /* ------------------------------------------------------
    HEART EXPLOSION ON TAP
