@@ -26,18 +26,7 @@ musicBtn.onclick = () => {
 // ------------------------------------------------------
 // FULLSCREEN FLOATING HEARTS
 // ------------------------------------------------------
-function createFloatingHeart() {
-  const container = document.querySelector(".hearts-fullscreen");
-  const heart = document.createElement("div");
-  heart.classList.add("floating-heart");
-  heart.textContent = "❤️";
-  heart.style.left = Math.random() * 100 + "vw";
-  heart.style.fontSize = Math.random() * 25 + 20 + "px";
-  heart.style.animationDuration = Math.random() * 4 + 4 + "s";
-  container.appendChild(heart);
-  setTimeout(() => heart.remove(), 8000);
-}
-setInterval(createFloatingHeart, 500);
+
 
 // ------------------------------------------------------
 // HEART EXPLOSION ON TAP
