@@ -1,98 +1,83 @@
-// Music 
-// -------------------------------
-// YEAR AUTO UPDATE
-// -------------------------------
-document.getElementById("year").textContent = new Date().getFullYear();
+// Basic interactions: lazy load images, open lightbox, keyboard navigation
+document.addEventListener('DOMContentLoaded', () => {
+  // set year in footer
+  document.getElementById('year').textContent = new Date().getFullYear();
 
-
-// -------------------------------
-// LAZY LOAD IMAGES
-// -------------------------------
-document.addEventListener("DOMContentLoaded", () => {
-  const lazyImages = document.querySelectorAll("img[data-src]");
-
-  lazyImages.forEach(img => {
-    img.src = img.dataset.src;
-    img.removeAttribute("data-src");
+  // LAZY LOAD: replace data-src -> src
+  const lazyImgs = Array.from(document.querySelectorAll('img[data-src]'));
+  lazyImgs.forEach(img => {
+    const src = img.dataset.src;
+    // if you want placeholder, set here. we'll directly assign:
+    img.src = src;
+    img.removeAttribute('data-src');
   });
-});
 
+  // Lightbox logic
+  const grid = document.getElementById('galleryGrid');
+  const items = Array.from(grid.querySelectorAll('.photo img'));
+  const lightbox = document.getElementById('lightbox');
+  const lbImg = lightbox.querySelector('.lb-image');
+  const lbCaption = lightbox.querySelector('.lb-caption');
+  const btnClose = lightbox.querySelector('.lb-close');
+  const btnPrev = lightbox.querySelector('.lb-prev');
+  const btnNext = lightbox.querySelector('.lb-next');
 
-// -------------------------------
-// LIGHTBOX SETUP
-// -------------------------------
-const lightbox = document.getElementById("lightbox");
-const lbImage = document.querySelector(".lb-image");
-const lbCaption = document.querySelector(".lb-caption");
-const btnClose = document.querySelector(".lb-close");
-const btnPrev = document.querySelector(".lb-prev");
-const btnNext = document.querySelector(".lb-next");
+  let currentIndex = -1;
 
-let currentIndex = 0;
-let images = [];
-
-// Collect all gallery images
-images = Array.from(document.querySelectorAll(".photo img"));
-
-
-// -------------------------------
-// OPEN LIGHTBOX
-// -------------------------------
-images.forEach((img, index) => {
-  img.addEventListener("click", () => {
+  function openLightbox(index){
+    if (index < 0 || index >= items.length) return;
     currentIndex = index;
-    showImage();
-    lightbox.classList.add("active");
-  });
-});
-
-
-// -------------------------------
-// UPDATE LIGHTBOX IMAGE
-// -------------------------------
-function showImage() {
-  const selected = images[currentIndex];
-  lbImage.src = selected.src;
-  lbCaption.textContent = selected.alt;
-}
-
-
-// -------------------------------
-// NEXT & PREVIOUS IMAGE
-// -------------------------------
-btnNext.addEventListener("click", () => {
-  currentIndex = (currentIndex + 1) % images.length;
-  showImage();
-});
-
-btnPrev.addEventListener("click", () => {
-  currentIndex = (currentIndex - 1 + images.length) % images.length;
-  showImage();
-});
-
-
-// -------------------------------
-// CLOSE LIGHTBOX
-// -------------------------------
-btnClose.addEventListener("click", () => {
-  lightbox.classList.remove("active");
-});
-
-// Click outside image closes
-lightbox.addEventListener("click", (e) => {
-  if (e.target === lightbox) {
-    lightbox.classList.remove("active");
+    lbImg.src = items[index].src;
+    lbImg.alt = items[index].alt || `Photo ${index+1}`;
+    lbCaption.textContent = lbImg.alt;
+    lightbox.classList.add('show');
+    lightbox.setAttribute('aria-hidden','false');
+    // focus for keyboard nav
+    btnClose.focus();
   }
-});
 
+  function closeLightbox(){
+    lightbox.classList.remove('show');
+    lightbox.setAttribute('aria-hidden','true');
+    lbImg.src = '';
+    currentIndex = -1;
+  }
 
-// -------------------------------
-// KEYBOARD CONTROLS (optional)
-// -------------------------------
-document.addEventListener("keydown", (e) => {
-  if (!lightbox.classList.contains("active")) return;
+  function showPrev(){
+    if (currentIndex <= 0) currentIndex = items.length - 1;
+    else currentIndex--;
+    openLightbox(currentIndex);
+  }
+  function showNext(){
+    if (currentIndex >= items.length - 1) currentIndex = 0;
+    else currentIndex++;
+    openLightbox(currentIndex);
+  }
 
-  if (e.key === "ArrowRight") btnNext.click();
-  if (e.key === "ArrowLeft") btnPrev.click();
-  if (e.key === "Escape") btnClose.click();
+  // click image -> open
+  items.forEach((img, i) => {
+    img.addEventListener('click', () => openLightbox(i));
+    // allow opening by keyboard
+    img.parentElement.tabIndex = 0;
+    img.parentElement.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') openLightbox(i);
+    });
+  });
+
+  btnClose.addEventListener('click', closeLightbox);
+  btnPrev.addEventListener('click', showPrev);
+  btnNext.addEventListener('click', showNext);
+
+  // close when clicking outside the image
+  lightbox.addEventListener('click', (e) => {
+    if (e.target === lightbox) closeLightbox();
+  });
+
+  // keyboard nav
+  document.addEventListener('keydown', (e) => {
+    if (!lightbox.classList.contains('show')) return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowLeft') showPrev();
+    if (e.key === 'ArrowRight') showNext();
+  });
 });
