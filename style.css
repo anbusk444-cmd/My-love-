@@ -5,6 +5,31 @@
    FLOATING HEART ANIMATION
 ------------------------------------------ */
 /* Beautiful glowing effect */
+/* ------------------------------------------
+   LOADING SCREEN
+------------------------------------------ */
+#loading-screen {
+  position: fixed;
+  inset: 0;
+  background: #0a0a0c;
+  color: #ff4f9f;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 22px;
+  font-weight: 600;
+  z-index: 20000;
+}
+
+.loader-text {
+  animation: fadeInOut 1.6s infinite;
+}
+
+@keyframes fadeInOut {
+  0% {opacity: 0.4;}
+  50% {opacity: 1;}
+  100% {opacity: 0.4;}
+}
 .photo img {
   border: 2px solid #ff4f9f;
   box-shadow: 0 0 15px #ff4f9f, 0 0 30px #a45bff;
