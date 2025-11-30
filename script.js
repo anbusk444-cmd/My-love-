@@ -1,4 +1,14 @@
-// -------------------------------
+// ------------------------------------------
+// REMOVE LOADING SCREEN
+// ------------------------------------------
+window.onload = () => {
+  const loader = document.getElementById("loading-screen");
+  loader.style.opacity = "0";
+
+  setTimeout(() => {
+    loader.style.display = "none";
+  }, 500);
+};// -------------------------------
 // YEAR AUTO UPDATE
 // -------------------------------
 document.getElementById("year").textContent = new Date().getFullYear();
